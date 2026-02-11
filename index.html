@@ -4,12 +4,76 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Simple Shop</title>
-  <link rel="stylesheet" href="style.css">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f4f4f4;
+    }
+
+    nav {
+      background: #222;
+      color: white;
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav button {
+      background: none;
+      border: none;
+      color: white;
+      margin-left: 15px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    nav button:hover {
+      text-decoration: underline;
+    }
+
+    /* Hide all pages */
+    .page {
+      display: none;
+      padding: 40px;
+    }
+
+    /* Show active page */
+    .active {
+      display: block;
+    }
+
+    .product, .cart, form {
+      background: white;
+      padding: 20px;
+      margin: 15px 0;
+      border-radius: 8px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+    }
+
+    button {
+      padding: 8px 15px;
+      cursor: pointer;
+    }
+
+    .checkout {
+      background: blue;
+      color: white;
+      border: none;
+    }
+  </style>
 </head>
 <body>
 
 <nav>
-  <h2 class="logo">Simple Shop</h2>
+  <h2>Simple Shop</h2>
   <div>
     <button onclick="showPage('home')">Home</button>
     <button onclick="showPage('shop')">Shop</button>
@@ -59,6 +123,46 @@
   </form>
 </section>
 
-<script src="script.js"></script>
+<script>
+  // TOGGLE PAGES
+  function showPage(pageId) {
+    const pages = document.querySelectorAll('.page');
+    pages.forEach(page => page.classList.remove('active'));
+    document.getElementById(pageId).classList.add('active');
+  }
+
+  // CART SYSTEM
+  let cart = [];
+  let total = 0;
+
+  function addToCart(product, price) {
+    cart.push(product);
+    total += price;
+
+    document.getElementById("cartItems").innerText = cart.join(", ");
+    document.getElementById("total").innerText = total;
+  }
+
+  function checkout() {
+    if (cart.length === 0) {
+      alert("Your cart is empty!");
+      return;
+    }
+
+    alert("Order successful! Total: ₱" + total);
+    cart = [];
+    total = 0;
+    document.getElementById("cartItems").innerText = "No items yet.";
+    document.getElementById("total").innerText = "0";
+  }
+
+  // CONTACT FORM
+  document.getElementById("contactForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+    alert("Thank you " + document.getElementById("name").value + "! Message sent.");
+    this.reset();
+  });
+</script>
+
 </body>
 </html>
