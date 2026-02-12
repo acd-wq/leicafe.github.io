@@ -5,9 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lei's Cafe</title>
 
-  <!-- Facebook Icon (Font Awesome) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -37,11 +34,13 @@
       text-decoration: underline;
     }
 
+    /* Hide all pages */
     .page {
       display: none;
       padding: 40px;
     }
 
+    /* Show active page */
     .active {
       display: block;
     }
@@ -69,64 +68,20 @@
       color: white;
       border: none;
     }
-
-    /* Facebook Share Button */
-    .fb-share-btn {
-      background: #1877f2;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 16px;
-      margin-top: 15px;
-    }
-
-    .fb-share-btn i {
-      margin-right: 8px;
-    }
-
-    .fb-share-btn:hover {
-      background: #145dbf;
-    }
   </style>
-
-  <!-- Meta Pixel Code -->
-  <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;
-    n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];
-    t=b.createElement(e);t.async=!0;
-    t.src=v;
-    s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)
-    }(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-
-    fbq('init', 'YOUR_PIXEL_ID'); // 🔥 Replace with your Pixel ID
-    fbq('track', 'PageView');
-  </script>
-
-  <noscript>
-    <img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"/>
-  </noscript>
-  <!-- End Meta Pixel Code -->
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-T8H2PM9J');</script>
-<!-- End Google Tag Manager -->
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-T8H2PM9J');</script>
+  <!-- End Google Tag Manager -->
 </head>
 <body>
 
 <nav>
-  <h2>Life Tastes Better Here (Demo site only)</h2>
+  <h2>Simple Shop</h2>
+  <h2>Life Tastes Better Here</h2>
   <div>
     <button onclick="showPage('home')">Home</button>
     <button onclick="showPage('shop')">Order</button>
@@ -139,11 +94,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <h1>Welcome to Lei's Cafe</h1>
   <img src="website photo1.jpg" alt="Shop Banner" width="300">
   <p>Artisan Coffee & Sweet Dessert in Makati.</p>
-
-  <!-- Facebook Share Button -->
-  <button onclick="shareOnFacebook()" class="fb-share-btn">
-    <i class="fa-brands fa-facebook-f"></i> Share on Facebook
-  </button>
 </section>
 
 <!-- SHOP -->
@@ -151,14 +101,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <h1>Products</h1>
 
   <div class="product">
-    <img src="cafe-latte.jpg" alt="Cafe Latte">
+    <img src="cafe-latte.jpg" alt="Cafe Latte" class="product-img">
     <h3>Cafe Latte</h3>
     <p>₱150</p>
     <button onclick="addToCart('Cafe Latte',150)">Add to Cart</button>
   </div>
 
   <div class="product">
-    <img src="blueberry cheesecake.jpg" alt="Blueberry Cheesecake">
+     <img src="blueberry cheesecake.jpg" alt="Blueberry Cheesecake" class="product-img">
     <h3>Blueberry Cheesecake</h3>
     <p>₱250</p>
     <button onclick="addToCart('Blueberry Cheesecake',250)">Add to Cart</button>
@@ -185,18 +135,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </section>
 
 <script>
+  // TOGGLE PAGES
   function showPage(pageId) {
     const pages = document.querySelectorAll('.page');
     pages.forEach(page => page.classList.remove('active'));
     document.getElementById(pageId).classList.add('active');
-  }
-
-  // Facebook Share
-  function shareOnFacebook() {
-    const url = encodeURIComponent(window.location.href);
-    const quote = encodeURIComponent("Love your cafe! Will be coming back again ❤️");
-    const facebookURL = `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${quote}`;
-    window.open(facebookURL, '_blank', 'width=600,height=400');
   }
 
   // CART SYSTEM
@@ -209,13 +152,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     document.getElementById("cartItems").innerText = cart.join(", ");
     document.getElementById("total").innerText = total;
-
-    // Track Add to Cart
-    fbq('track', 'AddToCart', {
-      content_name: product,
-      value: price,
-      currency: 'PHP'
-    });
   }
 
   function checkout() {
@@ -224,26 +160,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       return;
     }
 
-    // Track Purchase
-    fbq('track', 'Purchase', {
-      value: total,
-      currency: 'PHP'
-    });
-
     alert("Order successful! Total: ₱" + total);
-
     cart = [];
     total = 0;
     document.getElementById("cartItems").innerText = "No items yet.";
     document.getElementById("total").innerText = "0";
   }
 
+  // CONTACT FORM
   document.getElementById("contactForm").addEventListener("submit", function(event) {
     event.preventDefault();
-
-    // Track Lead
-    fbq('track', 'Lead');
-
     alert("Thank you " + document.getElementById("name").value + "! Message sent.");
     this.reset();
   });
